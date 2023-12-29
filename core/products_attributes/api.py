@@ -1,0 +1,3 @@
+from ninja import Router
+from core.products_attributes.manager import products_attributes
+from core.products_attributes.schemas import ProductAttributeOut, ProductAttributeIn, ProductAttributeUpdate
