@@ -4,7 +4,7 @@ class DatabaseManager:
 
     async def get_all(self, filters=None):
         filters = {key: value for key, value in filters.dict().items() if value}
-        return [user async for user in self.model.objects.filter(**filters)]
+        return [user async for user in self.model.objects.prefetch_related('parent').filter(**filters)]
 
     async def get(self, uuid):
         return await self.model.objects.aget(uuid=uuid)
