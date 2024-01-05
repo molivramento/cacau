@@ -1,9 +1,6 @@
 from typing import Optional
 from uuid import UUID
-from typing_extensions import Annotated
-
-from ninja import Schema
-from pydantic import field_validator
+from ninja import Schema, ModelSchema
 
 from core.categories.models import Category
 
@@ -13,18 +10,19 @@ class CategoryCreate(Schema):
     parent: Optional[UUID] = None
 
 
-class CategoryOut(Schema):
+class CategoryOutWithoutParent(Schema):
     uuid: UUID
     name: str
-    parent: Optional[UUID] = None
-    children: Optional[list['CategoryOut']] = None
 
-    @classmethod
-    @field_validator('children')
-    def load_children(cls, v, values):
-        if 'uuid' in values:
-            return Category.objects.filter(parent=values['uuid'])
-        return v
+
+class CategoryOut(ModelSchema):
+    parent: Optional[CategoryOutWithoutParent] = None
+    children: Optional[list[CategoryOutWithoutParent]] = None
+
+    class Meta:
+        model = Category
+        fields = '__all__'
+        count = None
 
 
 class CategoryUpdate(Schema):

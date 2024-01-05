@@ -1,13 +1,19 @@
+from asgiref.sync import sync_to_async
+
+from core.categories.schemas import CategoryOut
+
+
 class DatabaseManager:
     def __init__(self, model):
         self.model = model
 
-    async def get_all(self, filters=None):
+    def get_all(self, filters=None):
         filters = {key: value for key, value in filters.dict().items() if value}
-        return [user async for user in self.model.objects.prefetch_related('parent').filter(**filters)]
+        users = self.model.objects.prefetch_related('parent').filter(**filters)
+        return users
 
-    async def get(self, uuid):
-        return await self.model.objects.aget(uuid=uuid)
+    def get(self, uuid):
+        return self.model.objects.get(uuid=uuid)
 
     async def create(self, payload):
         return await self.model.objects.acreate(**payload.dict())
