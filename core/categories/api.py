@@ -18,8 +18,8 @@ def categories_detail(request, uuid: UUID):
 
 
 @router.post("/", response=CategoryOut)
-async def categories_create(request, payload: CategoryCreate):
-    return await categories.create(payload)
+def categories_create(request, payload: CategoryCreate):
+    return categories.create(payload)
 
 
 @router.put("/{uuid}", response=CategoryOut)

@@ -15,8 +15,8 @@ class DatabaseManager:
     def get(self, uuid):
         return self.model.objects.get(uuid=uuid)
 
-    async def create(self, payload):
-        return await self.model.objects.acreate(**payload.dict())
+    def create(self, payload):
+        return self.model.objects.create(**payload.dict())
 
     async def update(self, uuid, payload):
         obj = await self.model.objects.aget(uuid=uuid)
