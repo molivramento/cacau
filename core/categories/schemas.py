@@ -13,6 +13,7 @@ class CategoryCreate(Schema):
 class CategoryOutWithoutParent(Schema):
     uuid: UUID
     name: str
+    parent_id: Optional[UUID] = None
 
 
 class CategoryOut(ModelSchema):

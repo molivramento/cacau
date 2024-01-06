@@ -1,8 +1,7 @@
 from uuid import UUID
 from ninja import Router, Query
 from core.categories.manager import categories
-from core.categories.schemas import CategoryFilters, CategoryOut, CategoryCreate, CategoryUpdate, \
-    CategoryOutWithoutParent
+from core.categories.schemas import CategoryFilters, CategoryOut, CategoryCreate, CategoryUpdate
 
 router = Router()
 
