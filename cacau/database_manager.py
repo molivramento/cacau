@@ -1,8 +1,3 @@
-from asgiref.sync import sync_to_async
-
-from core.categories.schemas import CategoryOut
-
-
 class DatabaseManager:
     def __init__(self, model):
         self.model = model
@@ -25,7 +20,10 @@ class DatabaseManager:
         obj.asave()
         return obj
 
-    async def delete(self, uuid):
-        user = await self.model.objects.aget(uuid=uuid)
-        await user.adelete()
-        return True
+    def delete(self, uuid):
+        try:
+            user = self.model.objects.aget(uuid=uuid)
+            user.adelete()
+            return True
+        except self.model.DoesNotExist:
+            return False
