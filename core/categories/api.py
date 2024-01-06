@@ -23,10 +23,11 @@ def categories_create(request, payload: CategoryCreate):
 
 
 @router.put("/{uuid}", response=CategoryOut)
-async def categories_update(request, uuid: UUID, payload: CategoryUpdate):
+def categories_update(request, uuid: UUID, payload: CategoryUpdate):
+    print(uuid)
     return categories.update(uuid, payload)
 
 
-@router.delete("/{uuid}")
+@router.delete("/{uuid}", response=bool)
 async def categories_delete(request, uuid: UUID):
     return await categories.delete(uuid)

@@ -18,13 +18,14 @@ class DatabaseManager:
     def create(self, payload):
         return self.model.objects.create(**payload.dict())
 
-    async def update(self, uuid, payload):
-        obj = await self.model.objects.aget(uuid=uuid)
+    def update(self, uuid, payload):
+        obj = self.model.objects.get(uuid=uuid)
         for attr, value in payload.dict().items():
             setattr(obj, attr, value)
-        await obj.asave()
+        obj.asave()
         return obj
 
     async def delete(self, uuid):
         user = await self.model.objects.aget(uuid=uuid)
-        return await user.adelete()
+        await user.adelete()
+        return True
