@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     # Local apps
     'core.users',
     'core.categories',
-    'core.products_options'
+    'core.products_options',
+    'core.products_options_values'
 ]
 
 MIDDLEWARE = [

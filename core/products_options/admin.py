@@ -1,3 +1,4 @@
 from django.contrib import admin
+from core.products_options.models import ProductOption
 
-# Register your models here.
+admin.site.register(ProductOption)

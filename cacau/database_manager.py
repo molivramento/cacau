@@ -4,7 +4,7 @@ class DatabaseManager:
 
     def get_all(self, filters=None):
         filters = {key: value for key, value in filters.dict().items() if value}
-        users = self.model.objects.prefetch_related('parent').filter(**filters)
+        users = self.model.objects.filter(**filters)
         return users
 
     def get(self, uuid):
@@ -22,7 +22,7 @@ class DatabaseManager:
 
     def delete(self, uuid):
         try:
-            user = self.model.objects.aget(uuid=uuid)
+            user = self.model.objects.get(uuid=uuid)
             user.adelete()
             return True
         except self.model.DoesNotExist:
