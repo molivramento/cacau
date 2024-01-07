@@ -12,4 +12,4 @@ class CategoryManager(DatabaseManager):
         return self.model.objects.create(**payload.dict())
 
 
-categories = CategoryManager()
+categories_manager = CategoryManager()

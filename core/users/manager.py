@@ -7,4 +7,4 @@ class UserManager(DatabaseManager):
         super().__init__(User)
 
 
-users = UserManager()
+users_manager = UserManager()

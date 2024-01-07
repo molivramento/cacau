@@ -7,4 +7,4 @@ class ProductOptionManager(DatabaseManager):
         super().__init__(ProductOption)
 
 
-product_options = ProductOptionManager()
+product_options_manager = ProductOptionManager()
