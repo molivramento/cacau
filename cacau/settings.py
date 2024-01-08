@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'core.users',
     'core.categories',
     'core.products_options',
-    'core.products_options_values'
+    'core.products_options_values',
+    'core.products_bases',
 ]
 
 MIDDLEWARE = [
