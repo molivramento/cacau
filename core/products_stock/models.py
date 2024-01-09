@@ -6,12 +6,12 @@ from core.products_options_values.models import ProductOptionValue
 
 
 class ProductStock(models.Model):
-    uuid = models.UUIDField(primary_key=True, editable=False, default=uuid4)
-    product = models.ForeignKey(ProductBase, on_delete=models.CASCADE)
-    product_option_value = models.ManyToManyField(ProductOptionValue, on_delete=models.CASCADE)
-    sku = models.CharField(max_length=255, null=True, default=None)
-    barcode = models.CharField(max_length=255, null=True, default=None)
-    quantity = models.IntegerField(default=0)
-    add_price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
-    add_cost = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
-    add_weight = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    uuid = models.UUIDField(primary_key=True, editable=False, default=uuid4, db_index=True)
+    product = models.ForeignKey(ProductBase, on_delete=models.CASCADE, db_index=True)
+    product_option_value = models.ManyToManyField(ProductOptionValue, db_index=True)
+    sku = models.CharField(max_length=255, null=True, default=None, db_index=True)
+    barcode = models.CharField(max_length=255, null=True, default=None, db_index=True)
+    quantity = models.IntegerField(default=0, db_index=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00, db_index=True)
+    cost = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    weight = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)

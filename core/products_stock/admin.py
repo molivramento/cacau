@@ -1,3 +1,4 @@
 from django.contrib import admin
+from core.products_stock.models import ProductStock
 
-# Register your models here.
+admin.site.register(ProductStock)

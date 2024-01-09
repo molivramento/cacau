@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'core.products_options',
     'core.products_options_values',
     'core.products_bases',
+    'core.products_stock'
 ]
 
 MIDDLEWARE = [
