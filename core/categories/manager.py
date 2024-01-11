@@ -6,10 +6,10 @@ class CategoryManager(DatabaseManager):
     def __init__(self):
         super().__init__(Category)
 
-    def create(self, payload):
+    async def create(self, payload):
         if payload.parent:
-            payload.parent = self.model.objects.get(pk=payload.parent)
-        return self.model.objects.create(**payload.dict())
+            payload.parent = await self.get(pk=payload.parent)
+        return await self.model.objects.create(**payload.dict())
 
 
 categories_manager = CategoryManager()

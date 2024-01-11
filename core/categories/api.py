@@ -7,8 +7,8 @@ router = Router()
 
 
 @router.get("/", response=list[CategoryOut])
-def categories_list(request, filters: Query[CategoryFilters]):
-    return categories_manager.get_all(filters)
+async def categories_list(request, filters: Query[CategoryFilters]):
+    return await categories_manager.get_all(filters)
 
 
 @router.get("/{uuid}", response=CategoryOut)
