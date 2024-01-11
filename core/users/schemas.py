@@ -30,15 +30,6 @@ class UserPasswordUpdate(Schema):
     new_password: str
 
 
-# class UserFilters(Schema):
-#     email: Optional[EmailStr] = None
-#     email__icontains: Optional[str] = None
-#     is_active: Optional[bool] = None
-#     date_joined__lte: Optional[datetime] = None
-#     date_joined__gte: Optional[datetime] = None
-#     last_login__lte: Optional[datetime] = None
-#     last_login__gte: Optional[datetime] = None
-
 class UserFilters(FilterSchema):
     email: Optional[EmailStr] = None
     email__icontains: Optional[str] = None
