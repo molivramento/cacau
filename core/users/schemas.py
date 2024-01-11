@@ -1,5 +1,5 @@
 from uuid import UUID
-from ninja import Schema
+from ninja import Schema, FilterSchema
 from typing import Optional
 from datetime import datetime
 from pydantic import EmailStr
@@ -30,11 +30,19 @@ class UserPasswordUpdate(Schema):
     new_password: str
 
 
-class UserFilters(Schema):
+# class UserFilters(Schema):
+#     email: Optional[EmailStr] = None
+#     email__icontains: Optional[str] = None
+#     is_active: Optional[bool] = None
+#     date_joined__lte: Optional[datetime] = None
+#     date_joined__gte: Optional[datetime] = None
+#     last_login__lte: Optional[datetime] = None
+#     last_login__gte: Optional[datetime] = None
+
+class UserFilters(FilterSchema):
     email: Optional[EmailStr] = None
     email__icontains: Optional[str] = None
-    is_active: Optional[bool] = None
-    is_superuser: Optional[bool] = None
+    is_active: bool = True
     date_joined__lte: Optional[datetime] = None
     date_joined__gte: Optional[datetime] = None
     last_login__lte: Optional[datetime] = None
