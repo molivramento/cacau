@@ -15,15 +15,16 @@ class DatabaseManager:
 
     async def update(self, uuid, payload):
         obj = await self.get(uuid=uuid)
-        for attr, value in payload.dict().items():
+        payload = [(attr, value) for attr, value in payload.dict().items() if value is not None]
+        for attr, value in payload:
             setattr(obj, attr, value)
-        obj.asave()
+        await obj.asave()
         return obj
 
     async def delete(self, uuid):
         try:
             user = await self.get(uuid=uuid)
-            user.adelete()
+            await user.adelete()
             return True
         except self.model.DoesNotExist:
             return False
