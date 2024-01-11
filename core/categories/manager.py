@@ -1,5 +1,6 @@
 from cacau.database_manager import DatabaseManager
 from core.categories.models import Category
+from core.categories.schemas import CategoryOut
 
 
 class CategoryManager(DatabaseManager):
@@ -7,9 +8,7 @@ class CategoryManager(DatabaseManager):
         super().__init__(Category)
 
     async def create(self, payload):
-        if payload.parent:
-            payload.parent = await self.get(pk=payload.parent)
-        return await self.model.objects.create(**payload.dict())
+        return await self.model.objects.acreate(**payload.dict())
 
 
 categories_manager = CategoryManager()
