@@ -2,27 +2,27 @@ class DatabaseManager:
     def __init__(self, model):
         self.model = model
 
-    def get_all(self, filters=None):
-        filters = {key: value for key, value in filters.dict().items() if value}
-        users = self.model.objects.filter(**filters)
+    async def get_all(self, filters=None):
+        filters = {key: value for key, value in filters.dict().items() if value is not None}
+        users = [user async for user in self.model.objects.filter(**filters)]
         return users
 
-    def get(self, uuid):
-        return self.model.objects.get(uuid=uuid)
+    async def get(self, uuid):
+        return await self.model.objects.aget(uuid=uuid)
 
-    def create(self, payload):
-        return self.model.objects.create(**payload.dict())
+    async def create(self, payload):
+        return await self.model.objects.acreate(**payload.dict())
 
-    def update(self, uuid, payload):
-        obj = self.model.objects.get(uuid=uuid)
+    async def update(self, uuid, payload):
+        obj = await self.get(uuid=uuid)
         for attr, value in payload.dict().items():
             setattr(obj, attr, value)
         obj.asave()
         return obj
 
-    def delete(self, uuid):
+    async def delete(self, uuid):
         try:
-            user = self.model.objects.get(uuid=uuid)
+            user = await self.get(uuid=uuid)
             user.adelete()
             return True
         except self.model.DoesNotExist:
