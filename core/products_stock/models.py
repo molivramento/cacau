@@ -1,6 +1,5 @@
 from uuid import uuid4
 from django.db import models
-
 from core.products_bases.models import ProductBase
 from core.products_options_values.models import ProductOptionValue
 
