@@ -18,7 +18,7 @@ class CategoryOut(ModelSchema):
 
 class CategoryUpdate(Schema):
     name: Optional[str] = None
-    parent: Optional[UUID] = None
+    parent_id: Optional[UUID] = None
 
 
 class CategoryFilters(Schema):
