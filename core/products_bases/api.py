@@ -8,25 +8,25 @@ router = Router()
 
 
 @router.get("", response=list[ProductBaseOut])
-async def get_all(request, filters: Query[ProductBaseFilters]):
-    return await product_base_manager.get_all(filters)
+def get_all(request, filters: Query[ProductBaseFilters]):
+    return product_base_manager.get_all(filters)
 
 
 @router.get("/{uuid}", response=ProductBaseOut)
-async def get_by_uuid(request, uuid: UUID):
-    return await product_base_manager.get_by_uuid(uuid)
+def get_by_uuid(request, uuid: UUID):
+    return product_base_manager.get_by_uuid(uuid)
 
 
 @router.post("", response=ProductBaseOut)
-async def create(request, product_base: ProductBaseCreate):
-    return await product_base_manager.create(product_base)
+def create(request, product_base: ProductBaseCreate):
+    return product_base_manager.create(product_base)
 
 
 @router.put("/{uuid}", response=ProductBaseOut)
-async def update(request, uuid: UUID, product_base: ProductBaseUpdate):
-    return await product_base_manager.update(uuid, product_base)
+def update(request, uuid: UUID, product_base: ProductBaseUpdate):
+    return product_base_manager.update(uuid, product_base)
 
 
 @router.delete("/{uuid}")
-async def delete(request, uuid: UUID):
-    return await product_base_manager.delete(uuid)
+def delete(request, uuid: UUID):
+    return product_base_manager.delete(uuid)

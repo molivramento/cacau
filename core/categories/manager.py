@@ -7,8 +7,5 @@ class CategoryManager(DatabaseManager):
     def __init__(self):
         super().__init__(Category)
 
-    async def create(self, payload):
-        return await self.model.objects.acreate(**payload.dict())
-
 
 categories_manager = CategoryManager()
