@@ -1,3 +1,5 @@
+from uuid import UUID
+
 from ninja import Router, Query
 from core.products_stock.manager import product_stock_manager
 from core.products_stock.schemas import ProductStockOut, ProductStockCreate, ProductStockUpdate, ProductStockFilter
@@ -11,7 +13,7 @@ def list_product_stock(request, filters: Query[ProductStockFilter]):
 
 
 @router.get('{uuid}', response=ProductStockOut)
-def get_product_stock(request, uuid: str):
+def get_product_stock(request, uuid: UUID):
     return product_stock_manager.get(uuid)
 
 
@@ -21,10 +23,10 @@ def create_product_stock(request, product_stock: ProductStockCreate):
 
 
 @router.put('{uuid}', response=ProductStockOut)
-def update_product_stock(request, uuid: str, product_stock: ProductStockUpdate):
+def update_product_stock(request, uuid: UUID, product_stock: ProductStockUpdate):
     return product_stock_manager.update(uuid, product_stock)
 
 
 @router.delete('{uuid}')
-def delete_product_stock(request, uuid: str):
+def delete_product_stock(request, uuid: UUID):
     return product_stock_manager.delete(uuid)
