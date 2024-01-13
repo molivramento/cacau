@@ -5,12 +5,6 @@ from core.categories.schemas import CategoryOut
 from core.products_bases.models import ProductBase
 
 
-# class ProductBaseCreate(ModelSchema):
-#     class Meta:
-#         model = ProductBase
-#         fields = '__all__'
-#         exclude = ["uuid"]
-
 class ProductBaseCreate(Schema):
     category_id: UUID
     name: str
@@ -19,7 +13,7 @@ class ProductBaseCreate(Schema):
 
 
 class ProductBaseOut(ModelSchema):
-    category: CategoryOut
+    # category: CategoryOut
 
     class Meta:
         model = ProductBase

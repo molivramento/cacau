@@ -1,15 +1,17 @@
-from typing import Optional
 from uuid import UUID
-
+from typing import Optional
 from ninja import Schema, ModelSchema
-
 from core.products_options.schemas import ProductOptionOut
 from core.products_options_values.models import ProductOptionValue
 
 
-class ProductOptionValueCreate(Schema):
-    option_value_id: UUID
-    value: str
+class ProductOptionValueCreate(ModelSchema):
+    product_option_id: UUID
+
+    class Meta:
+        model = ProductOptionValue
+        fields = '__all__'
+        exclude = ['uuid', 'product_option']
 
 
 class ProductOptionValueOut(ModelSchema):

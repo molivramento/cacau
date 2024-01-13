@@ -2,7 +2,8 @@ from uuid import UUID
 
 from ninja import Router, Query
 from core.products_options_values.manager import product_option_value_manager
-from core.products_options_values.schemas import ProductOptionValueOut, ProductOptionValueFilter
+from core.products_options_values.schemas import ProductOptionValueOut, ProductOptionValueFilter, \
+    ProductOptionValueCreate
 
 router = Router()
 
@@ -18,7 +19,7 @@ def get_product_option_value(request, uuid: UUID):
 
 
 @router.post("/", response=ProductOptionValueOut)
-def create_product_option_value(request, product_option_value: ProductOptionValueOut):
+def create_product_option_value(request, product_option_value: ProductOptionValueCreate):
     return product_option_value_manager.create(product_option_value)
 
 

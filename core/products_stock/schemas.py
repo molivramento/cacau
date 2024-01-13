@@ -9,6 +9,9 @@ from core.products_stock.models import ProductStock
 
 
 class ProductStockCreate(ModelSchema):
+    product_option_value: list[UUID]
+    product_base_id: UUID
+
     class Meta:
         model = ProductStock
         fields = '__all__'

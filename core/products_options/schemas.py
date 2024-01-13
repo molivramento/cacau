@@ -1,14 +1,18 @@
 from typing import Optional
-
 from ninja import Schema, ModelSchema
-
 from core.products_options.models import ProductOption
 
 
-class ProductOptionCreate(Schema):
-    name: str
-    tag: str
-    unity: Optional[str] = None
+# class ProductOptionCreate(Schema):
+#     name: str
+#     tag: str
+#     unity: Optional[str] = None
+
+class ProductOptionCreate(ModelSchema):
+    class Meta:
+        model = ProductOption
+        fields = '__all__'
+        exclude = ['uuid']
 
 
 class ProductOptionOut(ModelSchema):

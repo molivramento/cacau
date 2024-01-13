@@ -11,6 +11,7 @@ class DatabaseManager:
         return self.model.objects.get(uuid=uuid)
 
     def create(self, payload):
+        print(payload.dict())
         return self.model.objects.create(**payload.dict())
 
     def update(self, uuid, payload):
