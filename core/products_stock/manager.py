@@ -7,7 +7,10 @@ class ProductStockManager(DatabaseManager):
         super().__init__(ProductStock)
 
     def create(self, product_stock):
-        product_option_value = product_stock.pop('product_option_value')
+        product_stock = product_stock.dict()
+        product_stock.pop('product_option_value')
+        print(product_stock)
+        return self.model.objects.create(product_stock)
 
 
 product_stock_manager = ProductStockManager()

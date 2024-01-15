@@ -1,11 +1,9 @@
-from typing import Optional
 from uuid import UUID
-
+from typing import Optional
 from ninja import ModelSchema, Schema
-
+from core.products_stock.models import ProductStock
 from core.products_bases.schemas import ProductBaseOut
 from core.products_options_values.schemas import ProductOptionValueOut
-from core.products_stock.models import ProductStock
 
 
 class ProductStockCreate(ModelSchema):
