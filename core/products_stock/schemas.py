@@ -7,22 +7,23 @@ from core.products_options_values.schemas import ProductOptionValueOut
 
 
 class ProductStockCreate(ModelSchema):
-    product_option_value: list[UUID]
-    # product_base_id: UUID
+    product_option_value_id: UUID
+    product_base_id: UUID
 
     class Meta:
         model = ProductStock
         fields = '__all__'
-        exclude = ['uuid']
+        exclude = ['uuid', 'product_option_value']
 
 
 class ProductStockOut(ModelSchema):
-    product: ProductBaseOut
-    product_option_value: ProductOptionValueOut
+    product_base: ProductBaseOut
+    product_option_value: list[ProductOptionValueOut]
 
     class Meta:
         model = ProductStock
         fields = '__all__'
+        exclude = ['product_option_value']
 
 
 class ProductStockUpdate(Schema):

@@ -3,6 +3,7 @@ from typing import Optional
 from ninja import Schema, ModelSchema, FilterSchema
 from core.categories.schemas import CategoryOut
 from core.products_bases.models import ProductBase
+from core.products_options_values.schemas import ProductOptionValueOut
 
 
 class ProductBaseCreate(Schema):

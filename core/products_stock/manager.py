@@ -8,15 +8,18 @@ class ProductStockManager(DatabaseManager):
         super().__init__(ProductStock)
 
     def create(self, product_stock):
-        product_option_value = [
-            product_option_value_manager.get(uuid=uuid) for uuid in product_stock.product_option_value
-        ]
-        product_stock = product_stock.dict()
-        product_stock.pop('product_option_value')
-        product_stock = self.model.objects.create(**product_stock)
-        for pov in product_option_value:
-            pov.add(product_stock).save()
-        return self.get(uuid=product_stock.uuid)
+        product_option_value = product_option_value_manager.get(uuid=product_stock.product_option_value_id)
+        params = product_stock.dict()
+        params.pop('product_option_value_id')
+        product_stock = self.model.objects.create(**params)
+        product_stock.product_option_value.add(product_option_value)
+        product_stock.save()
+        return product_stock
+
+    def get_all(self, filters=None):
+        filters = {key: value for key, value in filters.dict().items() if value is not None}
+        # users = [user async for user in self.model.objects.filter(**filters)]
+        return self.model.objects.filter(**filters)
 
 
 product_stock_manager = ProductStockManager()

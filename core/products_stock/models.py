@@ -6,8 +6,8 @@ from core.products_options_values.models import ProductOptionValue
 
 class ProductStock(models.Model):
     uuid = models.UUIDField(primary_key=True, editable=False, default=uuid4, db_index=True)
-    product_base = models.ForeignKey('products_bases.ProductBase', on_delete=models.CASCADE)
-    product_option_value = models.ManyToManyField(ProductOptionValue)
+    product_base = models.ForeignKey(ProductBase, on_delete=models.CASCADE, related_name='product_stock')
+    product_option_value = models.ManyToManyField(ProductOptionValue, related_name='product_stock')
     sku = models.CharField(max_length=255, null=True, default=None, db_index=True)
     barcode = models.CharField(max_length=255, null=True, default=None, db_index=True)
     quantity = models.IntegerField(default=0, db_index=True)
