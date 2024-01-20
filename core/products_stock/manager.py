@@ -16,10 +16,5 @@ class ProductStockManager(DatabaseManager):
         product_stock.save()
         return product_stock
 
-    def get_all(self, filters=None):
-        filters = {key: value for key, value in filters.dict().items() if value is not None}
-        # users = [user async for user in self.model.objects.filter(**filters)]
-        return self.model.objects.filter(**filters)
-
 
 product_stock_manager = ProductStockManager()

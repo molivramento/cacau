@@ -38,8 +38,10 @@ class ProductStockUpdate(Schema):
 
 
 class ProductStockFilter(Schema):
-    product_id: Optional[UUID] = None
+    product_base_id: Optional[UUID] = None
     product_option_value_id: Optional[UUID] = None
+    product_base__name__icontains: Optional[str] = None
+    product_option_value__name__icontains: Optional[str] = None
     sku: Optional[str] = None
     barcode: Optional[str] = None
     quantity__lte: Optional[int] = None

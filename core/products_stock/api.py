@@ -22,7 +22,7 @@ def create_product_stock(request, product_stock: ProductStockCreate):
     return product_stock_manager.create(product_stock)
 
 
-@router.put('{uuid}', response=ProductStockOut)
+@router.put('{uuid}', response=ProductStockUpdate)
 def update_product_stock(request, uuid: UUID, product_stock: ProductStockUpdate):
     return product_stock_manager.update(uuid, product_stock)
 
