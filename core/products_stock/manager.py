@@ -18,3 +18,11 @@ class ProductStockManager(DatabaseManager):
 
 
 product_stock_manager = ProductStockManager()
+
+# MODEL
+# @router.post("/")
+# def order_create(request, data: OrderCreate):
+#     print(data)
+#     order = Order.objects.create(user_id=data.user_id)
+#     order.buttons.add(data.button_id)
+#     return 1
